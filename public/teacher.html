@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Dashboard - Meet Lecture Proto</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 14px; min-width: 280px; }
+    button { padding: 10px 12px; margin-right: 8px; }
+    code { background: #f5f5f5; padding: 2px 6px; border-radius: 6px; }
+    .q { border-top: 1px solid #eee; padding-top: 10px; margin-top: 10px; }
+    .muted { color: #b00; font-weight: 600; }
+    .ok { color: #0a0; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Teacher Dashboard</h1>
+
+  <div class="card">
+    <button id="create">Create Session</button>
+    <span id="sessionInfo"></span>
+    <div style="margin-top:10px;">
+      <button id="start" disabled>Start Lecture (auto)</button>
+      <button id="pause" disabled>Pause</button>
+      <button id="resume" disabled>Resume</button>
+      <button id="next" disabled>Next Segment</button>
+    </div>
+    <div style="margin-top:10px;">
+      State: <span id="state">—</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>ElevenLabs (create voice + generate audio)</h3>
+    <div id="elStatus" style="color:#666;">—</div>
+
+    <div style="margin-top:10px;">
+      <div><b>1) Create a new voice from sample</b></div>
+      <input type="file" id="voiceSample" accept="audio/*" />
+      <input id="voiceName" placeholder="Voice name (e.g., Gregory Voice)" />
+      <button id="createVoice" disabled>Create Voice</button>
+    </div>
+
+    <div style="margin-top:12px;">
+      <div><b>OR set an existing Voice ID</b></div>
+      <input id="existingVoiceId" placeholder="Existing ElevenLabs voice_id" />
+      <button id="setVoice" disabled>Set Voice ID</button>
+      <div style="margin-top:6px; color:#666;">Current voice: <code id="currentVoice">(none)</code></div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <div><b>2) Paste script → generate audio segments</b></div>
+      <textarea id="script" rows="6" placeholder="Paste lecture script here..."></textarea>
+      <button id="genAudio" disabled>Generate Audio Segments</button>
+      <div id="genMsg" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card" style="flex:1; min-width:320px;">
+      <h3>Questions (latest first)</h3>
+      <div id="questions"></div>
+    </div>
+
+    <div class="card" style="flex:1; min-width:320px;">
+      <h3>Students</h3>
+      <div id="students"></div>
+    </div>
+  </div>
+
+<script>
+let code = null;
+let ws = null;
+let elevenlabsConfigured = false;
+let currentVoiceId = '';
+
+const $ = (id) => document.getElementById(id);
+
+function setButtons(enabled) {
+  $('start').disabled = !enabled;
+  $('pause').disabled = !enabled;
+  $('resume').disabled = !enabled;
+  $('next').disabled = !enabled;
+}
+
+async function refreshTeacher() {
+  if (!code) return;
+  const res = await fetch(`/api/session/${code}/teacher`);
+  const data = await res.json();
+  renderState(data.state);
+  renderQuestions(data.questions);
+  renderStudents(data.students);
+
+  elevenlabsConfigured = !!data.elevenlabsConfigured;
+  const cfg = data.config || { voiceId: '', voiceName: '' };
+  currentVoiceId = cfg.voiceId || '';
+  $('currentVoice').textContent = currentVoiceId || '(none)';
+
+  $('createVoice').disabled = !elevenlabsConfigured;
+  $('setVoice').disabled = !elevenlabsConfigured;
+  $('genAudio').disabled = !elevenlabsConfigured || !currentVoiceId;
+
+  $('elStatus').textContent = elevenlabsConfigured
+    ? `ElevenLabs configured (model: ${data.elevenlabsModel || 'default'}).`
+    : 'ElevenLabs NOT configured: set ELEVENLABS_API_KEY in .env';
+}
+
+function renderState(state) {
+  const started = state.started ? 'started' : 'not started';
+  const playing = state.playing ? 'playing' : 'paused';
+  const seg = `${state.currentIndex + 1}/${state.playlist.length}`;
+  $('state').textContent = `${started} • ${playing} • segment ${seg}`;
+}
+
+function renderQuestions(questions) {
+  const el = $('questions');
+  el.innerHTML = '';
+  if (!questions.length) {
+    el.innerHTML = '<div style="color:#666">No questions yet.</div>';
+    return;
+  }
+  for (const q of questions) {
+    const div = document.createElement('div');
+    div.className = 'q';
+    const when = new Date(q.at).toLocaleTimeString();
+    const header = `<div><b>${q.fromName}</b> @ ${when} (segment ${q.segmentIndex + 1})</div>`;
+    let body = '';
+    if (q.kind === 'text') body = `<div>${escapeHtml(q.text)}</div>`;
+    else body = `<audio controls src="${q.audioUrl}"></audio>`;
+    div.innerHTML = header + body;
+    el.appendChild(div);
+  }
+}
+
+function renderStudents(students) {
+  const el = $('students');
+  el.innerHTML = '';
+  if (!students.length) {
+    el.innerHTML = '<div style="color:#666">No students joined yet.</div>';
+    return;
+  }
+  for (const st of students) {
+    const muted = Date.now() < (st.mutedUntil || 0);
+    const div = document.createElement('div');
+    div.className = 'q';
+    div.innerHTML = `
+      <div><b>${escapeHtml(st.name)}</b> ${muted ? '<span class="muted">(muted)</span>' : '<span class="ok">(ok)</span>'}</div>
+      <div style="margin-top:6px;">
+        <button data-id="${st.id}" class="muteBtn">Mute 5 min</button>
+      </div>
+    `;
+    el.appendChild(div);
+  }
+  document.querySelectorAll('.muteBtn').forEach(btn => {
+    btn.onclick = async () => {
+      const studentId = btn.getAttribute('data-id');
+      await fetch(`/api/session/${code}/mute`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ studentId, seconds: 300 }),
+      });
+      await refreshTeacher();
+    };
+  });
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+
+function connectWS() {
+  if (!code) return;
+  if (ws) ws.close();
+  ws = new WebSocket(`${location.origin.replace('http','ws')}/?code=${code}&role=teacher`);
+  ws.onmessage = (ev) => {
+    const msg = JSON.parse(ev.data);
+    if (['QUESTION','PAUSE_FOR_QUESTION','SESSION_STARTED','RESUME','PAUSE','GOTO','STUDENT_JOINED','STUDENT_MUTED'].includes(msg.type)) {
+      refreshTeacher();
+    }
+  };
+}
+
+$('create').onclick = async () => {
+  const res = await fetch('/api/session/create', { method: 'POST' });
+  const data = await res.json();
+  code = data.code;
+  $('sessionInfo').innerHTML = `Session code: <code>${code}</code> • Student link: <code>${location.origin}/student</code>`;
+  setButtons(true);
+  connectWS();
+  await refreshTeacher();
+};
+
+$('createVoice').onclick = async () => {
+  $('genMsg').textContent = '';
+  const f = $('voiceSample').files[0];
+  const voiceName = ($('voiceName').value || '').trim() || `GregVoice-${code}`;
+  if (!f) { $('genMsg').textContent = 'Choose a voice sample audio file first.'; return; }
+
+  const fd = new FormData();
+  fd.append('sample', f, f.name);
+  fd.append('voiceName', voiceName);
+
+  $('genMsg').textContent = 'Creating voice...';
+  const r = await fetch(`/api/session/${code}/elevenlabs/voice/create`, { method: 'POST', body: fd });
+  const data = await r.json();
+  if (!data.ok) { $('genMsg').textContent = `Voice create failed: ${data.error || ''} ${data.detail || ''}`; return; }
+  $('genMsg').textContent = `Voice created. voice_id=${data.voiceId}`;
+  await refreshTeacher();
+};
+
+$('setVoice').onclick = async () => {
+  $('genMsg').textContent = '';
+  const voiceId = ($('existingVoiceId').value || '').trim();
+  const voiceName = ($('voiceName').value || '').trim();
+  if (!voiceId) { $('genMsg').textContent = 'Enter a voice_id.'; return; }
+  const r = await fetch(`/api/session/${code}/elevenlabs/voice/set`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ voiceId, voiceName }),
+  });
+  const data = await r.json();
+  if (!data.ok) { $('genMsg').textContent = `Set voice failed: ${data.error || ''}`; return; }
+  $('genMsg').textContent = 'Voice ID set.';
+  await refreshTeacher();
+};
+
+$('genAudio').onclick = async () => {
+  $('genMsg').textContent = '';
+  const script = ($('script').value || '').trim();
+  if (!script) { $('genMsg').textContent = 'Paste a script first.'; return; }
+  $('genMsg').textContent = 'Generating audio segments (this can take a bit)...';
+  const r = await fetch(`/api/session/${code}/elevenlabs/tts/generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ script }),
+  });
+  const data = await r.json();
+  if (!data.ok) { $('genMsg').textContent = `TTS failed: ${data.error || ''} ${data.detail || ''}`; return; }
+  $('genMsg').textContent = `Done. Generated ${data.count} segments. You can now Start Lecture.`;
+  await refreshTeacher();
+};
+
+$('start').onclick = async () => {
+  await fetch(`/api/session/${code}/start`, { method: 'POST' });
+  await refreshTeacher();
+};
+$('pause').onclick = async () => {
+  await fetch(`/api/session/${code}/pause`, { method: 'POST' });
+  await refreshTeacher();
+};
+$('resume').onclick = async () => {
+  await fetch(`/api/session/${code}/resume`, { method: 'POST' });
+  await refreshTeacher();
+};
+$('next').onclick = async () => {
+  await fetch(`/api/session/${code}/next`, { method: 'POST' });
+  await refreshTeacher();
+};
+
+setButtons(false);
+</script>
+</body>
+</html>

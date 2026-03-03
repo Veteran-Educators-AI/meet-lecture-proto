@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student - Meet Lecture Proto</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; max-width: 720px; }
+    input, textarea { width: 100%; padding: 10px; margin-top: 6px; }
+    button { padding: 10px 12px; margin-top: 10px; margin-right: 8px; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 14px; margin-top: 12px; }
+    .disabled { opacity: 0.6; }
+    code { background: #f5f5f5; padding: 2px 6px; border-radius: 6px; }
+    .status { font-weight: 650; }
+  </style>
+</head>
+<body>
+  <h1>Student Page</h1>
+
+  <div class="card" id="joinCard">
+    <label>Session code</label>
+    <input id="code" placeholder="ABC123" />
+    <label>Your name</label>
+    <input id="name" placeholder="Your name" />
+    <button id="join">Join</button>
+    <div id="joinMsg" style="margin-top:8px;color:#b00"></div>
+  </div>
+
+  <div class="card" id="lectureCard" style="display:none;">
+    <div>Session: <code id="codeShow"></code></div>
+    <div class="status" style="margin-top:8px;">Status: <span id="status">—</span></div>
+    <div style="margin-top:10px;">
+      <audio id="player" controls></audio>
+    </div>
+    <div style="margin-top:8px;color:#666;">
+      Lecture auto-starts when teacher starts the session. Questions are disabled before start.
+    </div>
+  </div>
+
+  <div class="card" id="questionCard" style="display:none;">
+    <h3>Ask a question</h3>
+
+    <div id="qDisabled" style="display:none;color:#b00; font-weight:650;">Questions are disabled until the lecture starts.</div>
+
+    <label>Text question</label>
+    <textarea id="qText" rows="3" placeholder="Type your question..."></textarea>
+    <button id="sendText">Send text question</button>
+
+    <hr />
+
+    <div>
+      <div><b>Audio question</b></div>
+      <button id="rec">Start recording</button>
+      <button id="stop" disabled>Stop</button>
+      <button id="sendAudio" disabled>Send audio question</button>
+      <div style="margin-top:8px;">
+        <audio id="preview" controls></audio>
+      </div>
+    </div>
+
+    <div id="qMsg" style="margin-top:10px;"></div>
+  </div>
+
+<script>
+let sessionCode = null;
+let studentId = null;
+let ws = null;
+let state = null;
+
+const $ = (id) => document.getElementById(id);
+
+function setStatus() {
+  if (!state) return;
+  const started = state.started ? 'started' : 'waiting for teacher';
+  const playing = state.playing ? 'playing' : 'paused';
+  const seg = `${state.currentIndex + 1}/${state.playlist.length}`;
+  $('status').textContent = `${started} • ${playing} • segment ${seg}`;
+
+  const canAsk = !!state.started;
+  $('qDisabled').style.display = canAsk ? 'none' : 'block';
+  $('sendText').disabled = !canAsk;
+  $('rec').disabled = !canAsk;
+  if (!canAsk) {
+    $('stop').disabled = true;
+    $('sendAudio').disabled = true;
+  }
+}
+
+function loadSegment() {
+  if (!state) return;
+  const seg = state.playlist[state.currentIndex];
+  if (!seg) return;
+  const player = $('player');
+  if (player.getAttribute('data-seg') !== seg.id) {
+    player.src = seg.url;
+    player.setAttribute('data-seg', seg.id);
+  }
+}
+
+function syncPlayback() {
+  const player = $('player');
+  loadSegment();
+  if (!state.started) {
+    player.pause();
+    return;
+  }
+  if (state.playing) {
+    // try play; browser may require user gesture; audio controls count as gesture after first interaction
+    player.play().catch(()=>{});
+  } else {
+    player.pause();
+  }
+}
+
+function connectWS() {
+  ws = new WebSocket(`${location.origin.replace('http','ws')}/?code=${sessionCode}&role=student`);
+  ws.onmessage = (ev) => {
+    const msg = JSON.parse(ev.data);
+    if (msg.type === 'HELLO') {
+      state = msg.state;
+      setStatus();
+      syncPlayback();
+      return;
+    }
+    if (msg.state) state = msg.state;
+    if (['SESSION_STARTED','PAUSE_FOR_QUESTION','PAUSE','RESUME','GOTO'].includes(msg.type)) {
+      setStatus();
+      syncPlayback();
+    }
+    if (msg.type === 'QUESTION') {
+      // no-op for students
+    }
+  };
+}
+
+$('join').onclick = async () => {
+  const code = ($('code').value || '').trim().toUpperCase();
+  const name = ($('name').value || '').trim();
+  $('joinMsg').textContent = '';
+  if (!code || !name) {
+    $('joinMsg').textContent = 'Please enter code and name.';
+    return;
+  }
+  const res = await fetch(`/api/session/${code}/join`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name })
+  });
+  const data = await res.json();
+  if (!data.ok) {
+    $('joinMsg').textContent = `Join failed: ${data.error}`;
+    return;
+  }
+  sessionCode = code;
+  studentId = data.studentId;
+  state = data.state;
+
+  $('joinCard').style.display = 'none';
+  $('lectureCard').style.display = 'block';
+  $('questionCard').style.display = 'block';
+  $('codeShow').textContent = sessionCode;
+  setStatus();
+  connectWS();
+  syncPlayback();
+};
+
+$('sendText').onclick = async () => {
+  $('qMsg').textContent = '';
+  const text = ($('qText').value || '').trim();
+  if (!text) { $('qMsg').textContent = 'Type a question first.'; return; }
+  const res = await fetch(`/api/session/${sessionCode}/question/text`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ studentId, text })
+  });
+  const data = await res.json();
+  if (!data.ok) {
+    $('qMsg').textContent = `Could not send: ${data.error}`;
+    return;
+  }
+  $('qText').value = '';
+  $('qMsg').textContent = 'Question sent. Lecture paused.';
+};
+
+// Audio recording
+let mediaRecorder = null;
+let chunks = [];
+let recordedBlob = null;
+
+$('rec').onclick = async () => {
+  $('qMsg').textContent = '';
+  recordedBlob = null;
+  $('preview').src = '';
+  chunks = [];
+
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  mediaRecorder = new MediaRecorder(stream);
+  mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+  mediaRecorder.onstop = () => {
+    recordedBlob = new Blob(chunks, { type: chunks[0]?.type || 'audio/webm' });
+    $('preview').src = URL.createObjectURL(recordedBlob);
+    $('sendAudio').disabled = false;
+    $('stop').disabled = true;
+    // stop tracks
+    stream.getTracks().forEach(t => t.stop());
+  };
+  mediaRecorder.start();
+  $('stop').disabled = false;
+  $('sendAudio').disabled = true;
+};
+
+$('stop').onclick = () => {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+};
+
+$('sendAudio').onclick = async () => {
+  $('qMsg').textContent = '';
+  if (!recordedBlob) { $('qMsg').textContent = 'Record something first.'; return; }
+  const fd = new FormData();
+  fd.append('studentId', studentId);
+  fd.append('audio', recordedBlob, 'question.webm');
+
+  const res = await fetch(`/api/session/${sessionCode}/question/audio`, { method: 'POST', body: fd });
+  const data = await res.json();
+  if (!data.ok) {
+    $('qMsg').textContent = `Could not send audio: ${data.error}`;
+    return;
+  }
+  $('qMsg').textContent = 'Audio question sent. Lecture paused.';
+  $('sendAudio').disabled = true;
+};
+
+$('player').addEventListener('ended', async () => {
+  // Auto-advance locally only if server says we're playing and not last segment.
+  // For prototype, server doesn't auto-advance; teacher can click Next Segment.
+});
+
+</script>
+</body>
+</html>
