@@ -1,0 +1,11 @@
+# Force Railway/Nixpacks to treat this as a Node web service (avoid Railpack/Caddy)
+
+[phases.setup]
+# Keep it simple and stable.
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[start]
+cmd = "npm start"
