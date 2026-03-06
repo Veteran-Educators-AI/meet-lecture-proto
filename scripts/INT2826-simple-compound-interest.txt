@@ -1,0 +1,23 @@
+Welcome to today's lesson on Simple and Compound Interest. My name is Mr. Francois, and by the end of this session, you're going to understand how money grows — and why it matters which type of interest you're earning.
+
+Let's start with the basics. Interest is the cost of borrowing money, or the reward for saving it. When a bank pays you interest, they're paying you for letting them use your money. When you take a loan, you pay the bank for using theirs. Simple enough, right?
+
+Now, there are two main types: Simple Interest and Compound Interest. They sound similar, but they work very differently — and that difference can mean hundreds or even thousands of dollars over time.
+
+Let's begin with Simple Interest. The formula is I equals P times r times t. I is the interest earned. P is the principal — that's your starting amount. r is the annual interest rate written as a decimal. And t is the time in years.
+
+Here's an example. You deposit one thousand dollars in a savings account that pays 5 percent simple interest per year. After 3 years, how much interest have you earned? Let's plug it in: I equals 1000 times 0.05 times 3. That gives us 150 dollars. So after 3 years, your total balance is 1150 dollars. The interest is the same amount every single year — 50 dollars — because simple interest only calculates on the original principal.
+
+Now let's talk about Compound Interest — and this is where it gets interesting, no pun intended. With compound interest, you earn interest not just on your original deposit, but also on the interest you've already earned. Your money starts making money on its money.
+
+The formula is A equals P times the quantity 1 plus r over n, raised to the power of n times t. A is the total amount. P is still the principal. r is the annual rate as a decimal. n is the number of times interest is compounded per year. And t is time in years.
+
+Let's use the same example. One thousand dollars, 5 percent interest, but now it's compounded annually for 3 years. Year one: 1000 times 1.05 equals 1050. Year two: 1050 times 1.05 equals 1102 dollars and 50 cents. Year three: 1102.50 times 1.05 equals 1157 dollars and 63 cents. Compare that to simple interest, which gave us 1150. Compound interest earned us an extra 7 dollars and 63 cents. Doesn't sound like much? Wait until we scale it up.
+
+Here's the key difference. With simple interest, your growth is linear — the same amount every year. With compound interest, your growth is exponential. The longer you leave the money, the faster it grows. This is why Albert Einstein allegedly called compound interest the eighth wonder of the world.
+
+Let's see a bigger example. Say you invest 5000 dollars at 8 percent interest for 20 years. With simple interest: I equals 5000 times 0.08 times 20, which equals 8000. Total: 13,000 dollars. With compound interest compounded annually: A equals 5000 times 1.08 to the 20th power, which equals approximately 23,305 dollars. That's over 10,000 dollars more than simple interest. Same starting money, same rate, same time — but compound interest nearly doubles your gain.
+
+Now here's what I want you to take away from today. Compound interest rewards patience. The earlier you start saving, the more time your money has to compound. A person who starts saving at 20 will almost always have more than someone who starts at 30, even if the late starter puts in more money. Time is the most powerful variable in the compound interest formula.
+
+For your practice problems today, I want you to calculate both simple and compound interest for these scenarios and compare the results. Remember — show your work, label your variables, and double-check your decimals. I'll see you in the next lesson.

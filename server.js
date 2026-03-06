@@ -197,16 +197,18 @@ const DEFAULT_VOICE_SETTINGS = {
 };
 
 app.post('/api/session/create', (req, res) => {
-  const code = safeCode();
+  const code = (req.body?.code || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 10) || safeCode();
   const cfg = loadSessionConfig(code) || null;
   const effectiveCfg = (cfg && cfg.voiceId) ? cfg : { voiceId: DEFAULT_ELEVENLABS_VOICE_ID, voiceName: DEFAULT_ELEVENLABS_VOICE_NAME };
+  // Load saved playlist from session config if available
+  const savedPlaylist = (cfg && cfg.playlist && cfg.playlist.length) ? cfg.playlist : makeDefaultPlaylist();
   sessions[code] = {
     code,
     createdAt: now(),
     started: false,
     playing: false,
     pausedReason: null,
-    playlist: makeDefaultPlaylist(),
+    playlist: savedPlaylist,
     currentIndex: 0,
     questions: [],
     students: Object.create(null),

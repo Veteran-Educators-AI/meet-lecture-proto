@@ -1,0 +1,12 @@
+{
+  "voiceId": "fEaWmZoTfDjFdlVUAW65",
+  "voiceName": "Gregory teach voice (mp3 hi-fi)",
+  "playlist": [
+    {"id": "seg1", "url": "/generated/INT2826/seg001.mp3"},
+    {"id": "seg2", "url": "/generated/INT2826/seg002.mp3"},
+    {"id": "seg3", "url": "/generated/INT2826/seg003.mp3"},
+    {"id": "seg4", "url": "/generated/INT2826/seg004.mp3"},
+    {"id": "seg5", "url": "/generated/INT2826/seg005.mp3"},
+    {"id": "seg6", "url": "/generated/INT2826/seg006.mp3"}
+  ]
+}

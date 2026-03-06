@@ -1,0 +1,23 @@
+Welcome back. Today we're diving into Certificates of Deposit — CDs for short. If you understood compound interest from our last lesson, you're already halfway there. CDs are one of the safest ways to grow your money, and I want you to understand exactly how they work.
+
+So what is a Certificate of Deposit? A CD is a special type of savings account offered by banks and credit unions. Here's the deal: you agree to deposit a certain amount of money and leave it there for a fixed period of time — that's called the term. In return, the bank pays you a higher interest rate than a regular savings account. The catch? You can't withdraw your money early without paying a penalty.
+
+Think of it like a promise. You're telling the bank: I won't touch this money for 6 months, or 1 year, or 5 years. And the bank says: because you're giving us that guarantee, we'll pay you more interest. The longer the term, the higher the rate — usually.
+
+Let's break down the key terms. The principal is the amount you deposit. The term is the length of time — it could be 3 months, 6 months, 1 year, 2 years, or even 5 years. The APY — Annual Percentage Yield — is the effective rate you earn, accounting for compounding. And the early withdrawal penalty is what you pay if you break the agreement and take your money out early.
+
+Now let's do some math. Say you put 2000 dollars into a 2-year CD with an APY of 4.5 percent, compounded monthly. Using our compound interest formula: A equals P times the quantity 1 plus r over n, raised to n times t. P is 2000. r is 0.045. n is 12, because it's compounded monthly. t is 2 years.
+
+So A equals 2000 times the quantity 1 plus 0.045 divided by 12, raised to the power of 24. Let's break that down. 0.045 divided by 12 is 0.00375. Add 1, you get 1.00375. Raise that to the 24th power — you get approximately 1.09381. Multiply by 2000 and you get 2187 dollars and 62 cents. So you earned 187 dollars and 62 cents just by letting your money sit there. Not bad for doing absolutely nothing.
+
+Now, why would someone choose a CD over a regular savings account? Three reasons. First, higher interest rates. CDs almost always pay more than standard savings accounts because the bank knows they can use your money for a fixed period. Second, predictability. You know exactly what you're getting. The rate is locked in when you open the CD. Even if interest rates drop, your rate stays the same. Third, safety. CDs at FDIC-insured banks are protected up to 250,000 dollars. Your money is as safe as it gets.
+
+But there are downsides too. The biggest one is liquidity — or the lack of it. Your money is locked up. If an emergency hits and you need that cash, you'll pay a penalty. That penalty is usually a few months' worth of interest, which can eat into your earnings significantly. Also, if interest rates go up after you open your CD, you're stuck with the lower rate.
+
+This is why smart investors use something called a CD ladder. Here's how it works. Instead of putting all your money into one long-term CD, you split it across multiple CDs with different terms. For example, you have 5000 dollars. You put 1000 in a 1-year CD, 1000 in a 2-year CD, 1000 in a 3-year CD, 1000 in a 4-year CD, and 1000 in a 5-year CD. Every year, one CD matures. You can reinvest it at the current rate or use the money if you need it. This gives you both the higher rates of long-term CDs and regular access to your money.
+
+Let's compare. A regular savings account might pay 0.5 percent. A 1-year CD might pay 4 percent. A 5-year CD might pay 4.75 percent. On 5000 dollars over 5 years, that difference is massive. At 0.5 percent, you earn about 126 dollars. At 4 percent compounded, you earn about 1083 dollars. At 4.75 percent, you earn about 1311 dollars. The CD earns you ten times more than the savings account.
+
+Here's the real-world takeaway. CDs are perfect for money you know you won't need for a specific period. Saving for a car in 2 years? CD. Building a house down payment over 5 years? CD ladder. Emergency fund you might need tomorrow? Keep that in a regular savings account — don't lock it up.
+
+For your assignment, I want you to calculate the maturity value of three different CDs with different terms and rates. Then design a CD ladder strategy for 10,000 dollars and explain your reasoning. Show all your work. I'll see you next time.
