@@ -1,0 +1,38 @@
+[
+  {
+    "segment": 1,
+    "title": "Simple & Compound Interest",
+    "subtitle": "Welcome to Today's Lesson",
+    "content": "<h2>What is Interest?</h2><ul><li><strong>Interest</strong> = the cost of borrowing money, or the reward for saving it</li><li>Banks pay <em>you</em> interest for using your money</li><li>You pay banks interest for using <em>theirs</em></li></ul><h3>Two Types:</h3><div class='highlight'><strong>Simple Interest</strong> vs <strong>Compound Interest</strong></div><p>They sound similar, but the difference can mean <strong>thousands of dollars</strong> over time.</p>"
+  },
+  {
+    "segment": 2,
+    "title": "Simple Interest",
+    "subtitle": "The Formula",
+    "content": "<div class='formula'>I = P × r × t</div><table class='var-table'><tr><td><strong>I</strong></td><td>Interest earned</td></tr><tr><td><strong>P</strong></td><td>Principal (starting amount)</td></tr><tr><td><strong>r</strong></td><td>Annual interest rate (as decimal)</td></tr><tr><td><strong>t</strong></td><td>Time (in years)</td></tr></table><h3>Example</h3><div class='example'>$1,000 at 5% simple interest for 3 years<br/><br/>I = 1,000 × 0.05 × 3 = <strong>$150</strong><br/>Total balance: <strong>$1,150</strong><br/><br/>Same $50 every year — only calculates on original principal</div>"
+  },
+  {
+    "segment": 3,
+    "title": "Compound Interest",
+    "subtitle": "Money Making Money on Money",
+    "content": "<p>With compound interest, you earn interest on your <strong>original deposit AND the interest you've already earned</strong>.</p><div class='formula'>A = P × (1 + r/n)<sup>n×t</sup></div><table class='var-table'><tr><td><strong>A</strong></td><td>Total amount</td></tr><tr><td><strong>P</strong></td><td>Principal</td></tr><tr><td><strong>r</strong></td><td>Annual rate (decimal)</td></tr><tr><td><strong>n</strong></td><td>Times compounded per year</td></tr><tr><td><strong>t</strong></td><td>Time in years</td></tr></table>"
+  },
+  {
+    "segment": 4,
+    "title": "Compound Interest — Worked Example",
+    "subtitle": "$1,000 at 5% Compounded Annually for 3 Years",
+    "content": "<div class='example'><table class='calc-table'><tr><th>Year</th><th>Calculation</th><th>Balance</th></tr><tr><td>1</td><td>$1,000 × 1.05</td><td><strong>$1,050.00</strong></td></tr><tr><td>2</td><td>$1,050 × 1.05</td><td><strong>$1,102.50</strong></td></tr><tr><td>3</td><td>$1,102.50 × 1.05</td><td><strong>$1,157.63</strong></td></tr></table></div><div class='comparison'><div class='compare-box simple'>Simple Interest<br/><strong>$1,150.00</strong></div><div class='compare-box compound'>Compound Interest<br/><strong>$1,157.63</strong></div></div><p class='note'>Extra $7.63 — but wait until we scale it up...</p>"
+  },
+  {
+    "segment": 5,
+    "title": "The Power of Compound Interest",
+    "subtitle": "$5,000 at 8% for 20 Years",
+    "content": "<div class='comparison-big'><div class='compare-box simple'><h3>Simple Interest</h3><p>I = 5,000 × 0.08 × 20 = $8,000</p><div class='big-number'>$13,000</div></div><div class='compare-box compound'><h3>Compound Interest</h3><p>A = 5,000 × 1.08²⁰</p><div class='big-number'>$23,305</div></div></div><div class='highlight'><strong>$10,305 more</strong> — same money, same rate, same time.<br/>Compound interest nearly <strong>doubles</strong> the gain.</div><p><em>\"Compound interest is the eighth wonder of the world.\"</em> — attributed to Albert Einstein</p>"
+  },
+  {
+    "segment": 6,
+    "title": "Key Takeaway",
+    "subtitle": "Time Is Your Most Powerful Variable",
+    "content": "<div class='takeaway'><h2>Compound interest rewards patience.</h2><ul><li>Start saving <strong>early</strong> — time is the most powerful variable</li><li>A person who starts at <strong>20</strong> will almost always beat someone who starts at <strong>30</strong></li><li>Even if the late starter puts in <strong>more money</strong></li></ul></div><h3>📝 Practice Problems</h3><div class='example'><ul><li>Calculate <strong>both</strong> simple and compound interest for given scenarios</li><li><strong>Compare</strong> the results</li><li>Show your work, label variables, check decimals</li></ul></div>"
+  }
+]

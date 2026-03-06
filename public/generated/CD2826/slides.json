@@ -1,0 +1,44 @@
+[
+  {
+    "segment": 1,
+    "title": "Certificates of Deposit (CDs)",
+    "subtitle": "One of the Safest Ways to Grow Your Money",
+    "content": "<h2>What is a CD?</h2><ul><li>A special type of <strong>savings account</strong></li><li>You agree to leave money for a <strong>fixed period</strong> (the term)</li><li>Bank pays you a <strong>higher interest rate</strong> than regular savings</li><li><strong>The catch:</strong> You can't withdraw early without a penalty</li></ul><div class='highlight'>Think of it like a <strong>promise</strong>:<br/>You guarantee not to touch the money → Bank pays you more interest.</div>"
+  },
+  {
+    "segment": 2,
+    "title": "Key CD Terms",
+    "subtitle": "Know the Vocabulary",
+    "content": "<table class='var-table'><tr><td><strong>Principal</strong></td><td>Amount you deposit</td></tr><tr><td><strong>Term</strong></td><td>Length of time (3 months to 5+ years)</td></tr><tr><td><strong>APY</strong></td><td>Annual Percentage Yield — effective rate including compounding</td></tr><tr><td><strong>Early Withdrawal Penalty</strong></td><td>Fee for breaking the agreement</td></tr></table>"
+  },
+  {
+    "segment": 3,
+    "title": "CD Math — Worked Example",
+    "subtitle": "$2,000 CD at 4.5% APY, Compounded Monthly, 2 Years",
+    "content": "<div class='formula'>A = P × (1 + r/n)<sup>n×t</sup></div><div class='example'><table class='calc-table'><tr><td>P = $2,000</td><td>r = 0.045</td></tr><tr><td>n = 12 (monthly)</td><td>t = 2 years</td></tr></table><br/><strong>Step by step:</strong><ol><li>0.045 ÷ 12 = <strong>0.00375</strong></li><li>1 + 0.00375 = <strong>1.00375</strong></li><li>1.00375<sup>24</sup> ≈ <strong>1.09381</strong></li><li>$2,000 × 1.09381 = <strong>$2,187.62</strong></li></ol><div class='highlight'>You earned <strong>$187.62</strong> by doing absolutely nothing.</div></div>"
+  },
+  {
+    "segment": 4,
+    "title": "Why Choose a CD?",
+    "subtitle": "Pros and Cons",
+    "content": "<div class='two-col'><div class='pro-col'><h3>✅ Pros</h3><ul><li><strong>Higher rates</strong> than savings accounts</li><li><strong>Predictable</strong> — rate locked in at opening</li><li><strong>Safe</strong> — FDIC insured up to $250,000</li></ul></div><div class='con-col'><h3>❌ Cons</h3><ul><li><strong>Low liquidity</strong> — money is locked up</li><li><strong>Early withdrawal penalty</strong> eats into earnings</li><li><strong>Rate risk</strong> — stuck if rates go up after you open</li></ul></div></div>"
+  },
+  {
+    "segment": 5,
+    "title": "The CD Ladder Strategy",
+    "subtitle": "Best of Both Worlds",
+    "content": "<h3>How It Works</h3><p>Split your money across <strong>multiple CDs with different terms</strong>:</p><div class='example'><table class='calc-table'><tr><th>Amount</th><th>Term</th></tr><tr><td>$1,000</td><td>1-year CD</td></tr><tr><td>$1,000</td><td>2-year CD</td></tr><tr><td>$1,000</td><td>3-year CD</td></tr><tr><td>$1,000</td><td>4-year CD</td></tr><tr><td>$1,000</td><td>5-year CD</td></tr></table></div><div class='highlight'>Every year, one CD matures → <strong>Reinvest at current rates</strong> or use if needed.<br/>Higher long-term rates + regular access to money.</div>"
+  },
+  {
+    "segment": 6,
+    "title": "The Numbers Don't Lie",
+    "subtitle": "$5,000 Over 5 Years — Comparison",
+    "content": "<div class='comparison-big'><div class='compare-box simple'><h3>Savings Account</h3><p>0.5% interest</p><div class='big-number'>~$126</div><p>earned</p></div><div class='compare-box'><h3>1-Year CD</h3><p>4.0% compounded</p><div class='big-number'>~$1,083</div><p>earned</p></div><div class='compare-box compound'><h3>5-Year CD</h3><p>4.75% compounded</p><div class='big-number'>~$1,311</div><p>earned</p></div></div><div class='highlight'>The CD earns <strong>10× more</strong> than the savings account.</div>"
+  },
+  {
+    "segment": 7,
+    "title": "Real-World Takeaway + Assignment",
+    "subtitle": "When to Use CDs",
+    "content": "<div class='takeaway'><h3>Use CDs when you know you won't need the money:</h3><ul><li>🚗 Saving for a car in 2 years? → <strong>CD</strong></li><li>🏠 Down payment over 5 years? → <strong>CD Ladder</strong></li><li>🚨 Emergency fund? → <strong>Regular savings</strong> (don't lock it up)</li></ul></div><h3>📝 Assignment</h3><div class='example'><ol><li>Calculate <strong>maturity value</strong> of 3 CDs with different terms & rates</li><li>Design a <strong>CD ladder strategy</strong> for $10,000</li><li>Explain your reasoning</li><li><strong>Show all your work!</strong></li></ol></div>"
+  }
+]
