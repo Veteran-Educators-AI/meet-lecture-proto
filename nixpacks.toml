@@ -1,11 +1,13 @@
 # Force Railway/Nixpacks to treat this as a Node web service (avoid Railpack/Caddy)
 
 [phases.setup]
-# Keep it simple and stable.
-nixPkgs = ["nodejs_20"]
+nixPkgs = ["nodejs_20", "npm"]
 
 [phases.install]
-cmds = ["npm ci"]
+cmds = ["npm ci --prefer-offline"]
+
+[phases.build]
+cmds = ["echo 'No build step needed'"]
 
 [start]
-cmd = "npm start"
+cmd = "node server.js"
