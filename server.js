@@ -183,6 +183,33 @@ function broadcast(code, msg) {
 app.get('/teacher', (req, res) => res.sendFile(path.join(publicDir, 'teacher.html')));
 app.get('/student', (req, res) => res.sendFile(path.join(publicDir, 'student.html')));
 
+// --- Session entry point (auto-creates session from saved config) ---
+app.get('/session/:code', (req, res) => {
+  const code = (req.params.code || '').toUpperCase();
+  // Auto-create the in-memory session from disk config if it doesn't exist yet
+  if (!sessions[code]) {
+    const cfg = loadSessionConfig(code);
+    if (!cfg) return res.status(404).send('Session not found. Check the code and try again.');
+    const savedPlaylist = (cfg.playlist && cfg.playlist.length) ? cfg.playlist : makeDefaultPlaylist();
+    sessions[code] = {
+      code,
+      createdAt: now(),
+      started: false,
+      playing: false,
+      pausedReason: null,
+      playlist: savedPlaylist,
+      currentIndex: 0,
+      questions: [],
+      students: Object.create(null),
+      repauseCooldownUntil: 0,
+      config: { voiceId: cfg.voiceId || DEFAULT_ELEVENLABS_VOICE_ID, voiceName: cfg.voiceName || DEFAULT_ELEVENLABS_VOICE_NAME },
+      _clients: new Set(),
+    };
+  }
+  // Serve the student page — it will pick up the code from the URL
+  res.sendFile(path.join(publicDir, 'student.html'));
+});
+
 // Default voice used when a new session is created (can be overridden per-session).
 // Updated to the improved hi-fi clone.
 const DEFAULT_ELEVENLABS_VOICE_ID = process.env.DEFAULT_ELEVENLABS_VOICE_ID || 'fEaWmZoTfDjFdlVUAW65';

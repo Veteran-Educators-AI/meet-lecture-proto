@@ -394,6 +394,15 @@ $('sendAudio').onclick = async () => {
   $('sendAudio').disabled = true;
 };
 
+// Auto-populate session code from URL path (e.g. /session/INT2826)
+const pathMatch = window.location.pathname.match(/^\/session\/([A-Za-z0-9]+)/i);
+if (pathMatch) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const codeInput = $('code');
+    if (codeInput) codeInput.value = pathMatch[1].toUpperCase();
+  });
+}
+
 // Auto-advance to next segment when current one ends
 const getPlayer = () => slides ? $('player') : $('playerFallback');
 document.addEventListener('DOMContentLoaded', () => {
