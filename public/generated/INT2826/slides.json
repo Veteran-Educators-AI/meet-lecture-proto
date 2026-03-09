@@ -1,38 +1,146 @@
 [
-  {
-    "segment": 1,
-    "title": "Simple & Compound Interest",
-    "subtitle": "Welcome to Today's Lesson",
-    "content": "<h2>What is Interest?</h2><ul><li><strong>Interest</strong> = the cost of borrowing money, or the reward for saving it</li><li>Banks pay <em>you</em> interest for using your money</li><li>You pay banks interest for using <em>theirs</em></li></ul><h3>Two Types:</h3><div class='highlight'><strong>Simple Interest</strong> vs <strong>Compound Interest</strong></div><p>They sound similar, but the difference can mean <strong>thousands of dollars</strong> over time.</p>"
-  },
-  {
-    "segment": 2,
-    "title": "Simple Interest",
-    "subtitle": "The Formula",
-    "content": "<div class='formula'>I = P × r × t</div><table class='var-table'><tr><td><strong>I</strong></td><td>Interest earned</td></tr><tr><td><strong>P</strong></td><td>Principal (starting amount)</td></tr><tr><td><strong>r</strong></td><td>Annual interest rate (as decimal)</td></tr><tr><td><strong>t</strong></td><td>Time (in years)</td></tr></table><h3>Example</h3><div class='example'>$1,000 at 5% simple interest for 3 years<br/><br/>I = 1,000 × 0.05 × 3 = <strong>$150</strong><br/>Total balance: <strong>$1,150</strong><br/><br/>Same $50 every year — only calculates on original principal</div>"
-  },
-  {
-    "segment": 3,
-    "title": "Compound Interest",
-    "subtitle": "Money Making Money on Money",
-    "content": "<p>With compound interest, you earn interest on your <strong>original deposit AND the interest you've already earned</strong>.</p><div class='formula'>A = P × (1 + r/n)<sup>n×t</sup></div><table class='var-table'><tr><td><strong>A</strong></td><td>Total amount</td></tr><tr><td><strong>P</strong></td><td>Principal</td></tr><tr><td><strong>r</strong></td><td>Annual rate (decimal)</td></tr><tr><td><strong>n</strong></td><td>Times compounded per year</td></tr><tr><td><strong>t</strong></td><td>Time in years</td></tr></table>"
-  },
-  {
-    "segment": 4,
-    "title": "Compound Interest — Worked Example",
-    "subtitle": "$1,000 at 5% Compounded Annually for 3 Years",
-    "content": "<div class='example'><table class='calc-table'><tr><th>Year</th><th>Calculation</th><th>Balance</th></tr><tr><td>1</td><td>$1,000 × 1.05</td><td><strong>$1,050.00</strong></td></tr><tr><td>2</td><td>$1,050 × 1.05</td><td><strong>$1,102.50</strong></td></tr><tr><td>3</td><td>$1,102.50 × 1.05</td><td><strong>$1,157.63</strong></td></tr></table></div><div class='comparison'><div class='compare-box simple'>Simple Interest<br/><strong>$1,150.00</strong></div><div class='compare-box compound'>Compound Interest<br/><strong>$1,157.63</strong></div></div><p class='note'>Extra $7.63 — but wait until we scale it up...</p>"
-  },
-  {
-    "segment": 5,
-    "title": "The Power of Compound Interest",
-    "subtitle": "$5,000 at 8% for 20 Years",
-    "content": "<div class='comparison-big'><div class='compare-box simple'><h3>Simple Interest</h3><p>I = 5,000 × 0.08 × 20 = $8,000</p><div class='big-number'>$13,000</div></div><div class='compare-box compound'><h3>Compound Interest</h3><p>A = 5,000 × 1.08²⁰</p><div class='big-number'>$23,305</div></div></div><div class='highlight'><strong>$10,305 more</strong> — same money, same rate, same time.<br/>Compound interest nearly <strong>doubles</strong> the gain.</div><p><em>\"Compound interest is the eighth wonder of the world.\"</em> — attributed to Albert Einstein</p>"
-  },
-  {
-    "segment": 6,
-    "title": "Key Takeaway",
-    "subtitle": "Time Is Your Most Powerful Variable",
-    "content": "<div class='takeaway'><h2>Compound interest rewards patience.</h2><ul><li>Start saving <strong>early</strong> — time is the most powerful variable</li><li>A person who starts at <strong>20</strong> will almost always beat someone who starts at <strong>30</strong></li><li>Even if the late starter puts in <strong>more money</strong></li></ul></div><h3>📝 Practice Problems</h3><div class='example'><ul><li>Calculate <strong>both</strong> simple and compound interest for given scenarios</li><li><strong>Compare</strong> the results</li><li>Show your work, label variables, check decimals</li></ul></div>"
-  }
+    {
+        "segment": 1,
+        "title": "Simple & Compound Interest",
+        "subtitle": "Welcome to Today's Lesson",
+        "content": "<h2>What is Interest?</h2><ul><li><strong>Interest</strong> = the cost of borrowing money, or the reward for saving it</li><li>Banks pay <em>you</em> interest for using your money</li><li>You pay banks interest for using <em>theirs</em></li></ul><h3>Two Types:</h3><div class='highlight'><strong>Simple Interest</strong> vs <strong>Compound Interest</strong></div><p>They sound similar, but the difference can mean <strong>thousands of dollars</strong> over time.</p>"
+    },
+    {
+        "segment": 2,
+        "title": "Understanding Interest",
+        "subtitle": "A Real-World Picture",
+        "content": "<h2>Interest in Everyday Life</h2><div class='example'><p>You lend your friend <strong>$100</strong></p><p>At the end of the year, they give you back <strong>$105</strong></p><p>That extra <strong>$5</strong> = <strong>Interest</strong> (5%)</p></div><h3>The Big Question:</h3><p>How does that percentage get calculated each year?</p><p>That's where <strong>Simple</strong> and <strong>Compound</strong> interest split apart.</p>"
+    },
+    {
+        "segment": 3,
+        "title": "Simple Interest",
+        "subtitle": "The Formula",
+        "content": "<div class='formula'>I = P × r × t</div><table class='var-table'><tr><td><strong>I</strong></td><td>Interest earned</td></tr><tr><td><strong>P</strong></td><td>Principal (starting amount)</td></tr><tr><td><strong>r</strong></td><td>Annual interest rate (as decimal)</td></tr><tr><td><strong>t</strong></td><td>Time (in years)</td></tr></table><h3>Key Conversions:</h3><ul><li>5% → 0.05 | 12% → 0.12</li><li>6 months → 0.5 years | 18 months → 1.5 years</li></ul>"
+    },
+    {
+        "segment": 4,
+        "title": "Simple Interest — Example 1",
+        "subtitle": "$1,000 at 5% for 3 Years",
+        "content": "<div class='example'>I = 1,000 × 0.05 × 3 = <strong>$150</strong><br/><br/>Total balance: <strong>$1,150</strong><br/><br/><table class='calc-table'><tr><th>Year</th><th>Interest</th><th>Balance</th></tr><tr><td>1</td><td>$50</td><td>$1,050</td></tr><tr><td>2</td><td>$50</td><td>$1,100</td></tr><tr><td>3</td><td>$50</td><td>$1,150</td></tr></table><p>Same $50 every year — only calculates on original principal</p></div>"
+    },
+    {
+        "segment": 5,
+        "title": "Simple Interest — Example 2",
+        "subtitle": "$2,500 at 4% for 5 Years",
+        "content": "<div class='example'>I = 2,500 × 0.04 × 5 = 2,500 × 0.2 = <strong>$500</strong><br/><br/>Total balance: <strong>$3,000</strong><br/><br/><table class='calc-table'><tr><th>Year</th><th>Interest</th></tr><tr><td>1</td><td>$100</td></tr><tr><td>2</td><td>$100</td></tr><tr><td>3</td><td>$100</td></tr><tr><td>4</td><td>$100</td></tr><tr><td>5</td><td>$100</td></tr></table><p>Flat, predictable, constant. That's simple interest.</p></div>"
+    },
+    {
+        "segment": 6,
+        "title": "Think About It",
+        "subtitle": "Quick Mental Math Challenge",
+        "content": "<div class='highlight'><h2>Try This:</h2><p>3% simple interest on $10,000 for 10 years</p><p>I = 10,000 × 0.03 × 10 = ?</p></div><div class='example'><p>I = 10,000 × 0.3 = <strong>$3,000</strong></p><p>Balance: $10,000 → <strong>$13,000</strong></p></div><p class='note'>Hold this number — we'll compare it to compound interest soon.</p>"
+    },
+    {
+        "segment": 7,
+        "title": "Simple Interest in Real Life",
+        "subtitle": "Car Loans",
+        "content": "<h2>Car Loan Example</h2><div class='example'><p>Borrow <strong>$20,000</strong> for a car</p><p>Rate: <strong>6%</strong> simple interest</p><p>Time: <strong>5 years</strong></p><br/><p>I = 20,000 × 0.06 × 5 = <strong>$6,000</strong></p><p>Total repayment: <strong>$26,000</strong></p></div><p>Interest calculated on the original $20,000 only — doesn't matter when you pay.</p>"
+    },
+    {
+        "segment": 8,
+        "title": "Compound Interest",
+        "subtitle": "Money Making Money on Money",
+        "content": "<p>With compound interest, you earn interest on your <strong>original deposit AND the interest you've already earned</strong>.</p><p>It's like a snowball rolling downhill. 🏔️</p><div class='formula'>A = P × (1 + r/n)<sup>n×t</sup></div><table class='var-table'><tr><td><strong>A</strong></td><td>Total amount</td></tr><tr><td><strong>P</strong></td><td>Principal</td></tr><tr><td><strong>r</strong></td><td>Annual rate (decimal)</td></tr><tr><td><strong>n</strong></td><td>Times compounded per year</td></tr><tr><td><strong>t</strong></td><td>Time in years</td></tr></table>"
+    },
+    {
+        "segment": 9,
+        "title": "Compounding Frequency",
+        "subtitle": "What Does n Equal?",
+        "content": "<table class='var-table'><tr><th>Compounding</th><th>n value</th></tr><tr><td>Annually</td><td><strong>1</strong></td></tr><tr><td>Semi-annually</td><td><strong>2</strong></td></tr><tr><td>Quarterly</td><td><strong>4</strong></td></tr><tr><td>Monthly</td><td><strong>12</strong></td></tr><tr><td>Daily</td><td><strong>365</strong></td></tr></table><p class='note'>The more frequently it compounds, the more interest you earn.</p>"
+    },
+    {
+        "segment": 10,
+        "title": "Compound Interest — Worked Example",
+        "subtitle": "$1,000 at 5% Compounded Annually for 3 Years",
+        "content": "<div class='example'><table class='calc-table'><tr><th>Year</th><th>Calculation</th><th>Balance</th></tr><tr><td>1</td><td>$1,000 × 1.05</td><td><strong>$1,050.00</strong></td></tr><tr><td>2</td><td>$1,050 × 1.05</td><td><strong>$1,102.50</strong></td></tr><tr><td>3</td><td>$1,102.50 × 1.05</td><td><strong>$1,157.63</strong></td></tr></table></div><h3>Year-by-Year Comparison:</h3><table class='calc-table'><tr><th>Year</th><th>Simple</th><th>Compound</th></tr><tr><td>1</td><td>$50.00</td><td>$50.00</td></tr><tr><td>2</td><td>$50.00</td><td>$52.50</td></tr><tr><td>3</td><td>$50.00</td><td>$55.13</td></tr></table><p>The gap widens every year!</p>"
+    },
+    {
+        "segment": 11,
+        "title": "Monthly vs Annual Compounding",
+        "subtitle": "$1,000 at 5% for 3 Years",
+        "content": "<h2>Monthly Compounding</h2><div class='example'><p>A = 1,000 × (1 + 0.05/12)<sup>36</sup></p><p>= 1,000 × (1.004167)<sup>36</sup></p><p>= 1,000 × 1.16162</p><p>= <strong>$1,161.62</strong></p></div><div class='comparison'><div class='compare-box simple'>Simple<br/><strong>$1,150.00</strong></div><div class='compare-box'>Annual<br/><strong>$1,157.63</strong></div><div class='compare-box compound'>Monthly<br/><strong>$1,161.62</strong></div><div class='compare-box compound'>Daily<br/><strong>$1,161.82</strong></div></div>"
+    },
+    {
+        "segment": 12,
+        "title": "The Power of Compound Interest",
+        "subtitle": "$5,000 at 8% for 20 Years",
+        "content": "<div class='comparison-big'><div class='compare-box simple'><h3>Simple Interest</h3><p>I = 5,000 × 0.08 × 20 = $8,000</p><div class='big-number'>$13,000</div></div><div class='compare-box compound'><h3>Compound Interest</h3><p>A = 5,000 × 1.08²⁰</p><div class='big-number'>$23,305</div></div></div><div class='highlight'><strong>$10,305 more</strong> — same money, same rate, same time.<br/>Simple grew by $8,000. Compound grew by <strong>$18,305</strong>.<br/>Compound interest more than <strong>doubles</strong> the gain.</div>"
+    },
+    {
+        "segment": 13,
+        "title": "Starting Early — The Most Powerful Move",
+        "subtitle": "Person A (age 20) vs Person B (age 30)",
+        "content": "<div class='comparison-big'><div class='compare-box'><h3>Person A — Starts at 20</h3><p>$200/month for 40 years</p><p>Total invested: <strong>$96,000</strong></p><div class='big-number'>$525,000</div></div><div class='compare-box'><h3>Person B — Starts at 30</h3><p>$200/month for 30 years</p><p>Total invested: <strong>$72,000</strong></p><div class='big-number'>$243,000</div></div></div><div class='highlight'>Person A invested only $24,000 more but ended up with <strong>$282,000 more</strong>.<br/>Those first 10 years created a lead that Person B could never catch up to.</div>"
+    },
+    {
+        "segment": 14,
+        "title": "Compound Interest — The Dark Side",
+        "subtitle": "Credit Cards",
+        "content": "<h2>Credit Card Interest Works Against You</h2><div class='example'><p>Buy a phone: <strong>$1,200</strong> on credit card</p><p>Rate: <strong>24%</strong> compounded daily, no payments for 1 year</p><br/><p>A = 1,200 × (1 + 0.24/365)<sup>365</sup> = <strong>$1,525.44</strong></p><p>Interest: <strong>$325</strong> — almost another phone!</p><br/><p>After 3 years with no payments: <strong>≈ $2,454</strong></p><p>Your $1,200 phone now costs over $2,400.</p></div><p class='note'>Compound interest is your best friend when saving, your worst enemy when borrowing.</p>"
+    },
+    {
+        "segment": 15,
+        "title": "Building Wealth — $100/Month",
+        "subtitle": "Consistent Saving + Compound Interest",
+        "content": "<h2>$100/month at 5% compounded monthly</h2><table class='calc-table'><tr><th>Age</th><th>Total Invested</th><th>Balance</th><th>Interest Earned</th></tr><tr><td>25 (7 yrs)</td><td>$8,400</td><td><strong>$9,870</strong></td><td>$1,470</td></tr><tr><td>30 (12 yrs)</td><td>$14,400</td><td><strong>$18,400</strong></td><td>$4,000</td></tr><tr><td>40 (22 yrs)</td><td>$26,400</td><td><strong>$41,100</strong></td><td>$14,700</td></tr><tr><td>65 (47 yrs)</td><td>$56,400</td><td><strong>$232,000</strong></td><td>$175,600</td></tr></table><div class='highlight'>Put in $56,400. Got back <strong>$232,000</strong>. That's compound interest.</div>"
+    },
+    {
+        "segment": 16,
+        "title": "The Rule of 72",
+        "subtitle": "Quick Doubling Time Estimate",
+        "content": "<div class='formula'>Doubling Time ≈ 72 ÷ Interest Rate</div><table class='calc-table'><tr><th>Rate</th><th>72 ÷ Rate</th><th>Years to Double</th></tr><tr><td>4%</td><td>72 ÷ 4</td><td><strong>18 years</strong></td></tr><tr><td>6%</td><td>72 ÷ 6</td><td><strong>12 years</strong></td></tr><tr><td>8%</td><td>72 ÷ 8</td><td><strong>9 years</strong></td></tr><tr><td>10%</td><td>72 ÷ 10</td><td><strong>7.2 years</strong></td></tr><tr><td>12%</td><td>72 ÷ 12</td><td><strong>6 years</strong></td></tr></table><div class='example'>$5,000 at 8% → Rule of 72 says ~9 years to double<br/>Actual: 5,000 × 1.08⁹ = <strong>$9,995</strong> ✓</div>"
+    },
+    {
+        "segment": 17,
+        "title": "Interest Rate vs APY",
+        "subtitle": "Understanding What Banks Advertise",
+        "content": "<h2>APY = Annual Percentage Yield</h2><ul><li><strong>APY</strong> accounts for compounding — it's the effective rate</li><li>The nominal rate might be slightly lower</li><li>Compounding brings it up to the advertised APY</li></ul><div class='highlight'><p>When comparing savings accounts:</p><p><strong>Always compare APY to APY</strong></p><p>That's the true apples-to-apples comparison.</p></div>"
+    },
+    {
+        "segment": 18,
+        "title": "Test Practice — Simple Interest",
+        "subtitle": "Maria's Deposit",
+        "content": "<h2>Problem:</h2><p>Maria deposits $8,000 at 3.5% simple interest for 4 years.</p><div class='example'><p><strong>Step 1:</strong> P = 8,000, r = 0.035, t = 4</p><p><strong>Step 2:</strong> I = 8,000 × 0.035 × 4 = <strong>$1,120</strong></p><p><strong>Step 3:</strong> Total = 8,000 + 1,120 = <strong>$9,120</strong></p></div><h2>Same Problem — Compound (Monthly):</h2><div class='example'><p>A = 8,000 × (1 + 0.035/12)<sup>48</sup></p><p>= 8,000 × 1.1503 = <strong>$9,202.40</strong></p><p>Compound earned <strong>$82.40 more</strong></p></div>"
+    },
+    {
+        "segment": 19,
+        "title": "Solving for Different Variables",
+        "subtitle": "I = P × r × t — Rearranged",
+        "content": "<h3>Solve for Time:</h3><div class='example'><p>$6,000 needs to earn $1,800 at 5%</p><p>t = I ÷ (P × r) = 1,800 ÷ (6,000 × 0.05) = 1,800 ÷ 300 = <strong>6 years</strong></p></div><h3>Solve for Rate:</h3><div class='example'><p>$4,000 earns $960 in 4 years</p><p>r = I ÷ (P × t) = 960 ÷ (4,000 × 4) = 960 ÷ 16,000 = <strong>6%</strong></p></div><h3>Solve for Principal:</h3><div class='example'><p>Earn $2,100 at 7% in 3 years</p><p>P = I ÷ (r × t) = 2,100 ÷ (0.07 × 3) = 2,100 ÷ 0.21 = <strong>$10,000</strong></p></div>"
+    },
+    {
+        "segment": 20,
+        "title": "The Graduation Gift",
+        "subtitle": "$3,000 at 6% Compounded Quarterly for 10 Years",
+        "content": "<div class='example'><p>P = 3,000 | r = 0.06 | n = 4 | t = 10</p><br/><p>A = 3,000 × (1 + 0.06/4)<sup>40</sup></p><p>= 3,000 × (1.015)<sup>40</sup></p><p>= 3,000 × 1.8140</p><p>= <strong>$5,442</strong></p></div><div class='comparison'><div class='compare-box simple'>Simple Interest<br/>$4,800</div><div class='compare-box compound'>Compound Interest<br/><strong>$5,442</strong></div></div><p class='note'>$642 more — your graduation gift nearly doubled without you doing anything.</p>"
+    },
+    {
+        "segment": 21,
+        "title": "The Twin Experiment",
+        "subtitle": "Alex vs Jordan — Starting Early Wins",
+        "content": "<div class='comparison-big'><div class='compare-box compound'><h3>Alex — Starts at 18</h3><p>$150/month for 40 years at 7%</p><p>Total invested: <strong>$72,000</strong></p><div class='big-number'>$395,000</div></div><div class='compare-box simple'><h3>Jordan — Starts at 28</h3><p>$300/month for 30 years at 7%</p><p>Total invested: <strong>$108,000</strong></p><div class='big-number'>$365,000</div></div></div><div class='highlight'>Jordan invested <strong>$36,000 MORE</strong> but ended up with <strong>$30,000 LESS</strong>.<br/>The 10-year head start beats double the monthly investment.</div>"
+    },
+    {
+        "segment": 22,
+        "title": "Key Rules to Remember",
+        "subtitle": "Your Cheat Sheet",
+        "content": "<ol><li><strong>Convert % to decimal</strong> — 5% → 0.05, 12% → 0.12</li><li><strong>Time in years</strong> — 18 months → 1.5, 6 months → 0.5</li><li><strong>Know your n</strong> — Annual=1, Semi=2, Quarterly=4, Monthly=12, Daily=365</li><li><strong>Label everything</strong> — P=?, r=?, t=?, n=?</li><li><strong>Sanity check</strong> — Does your answer make sense?</li><li><strong>Know the direction</strong> — Saving? Want compound. Borrowing? Prefer simple.</li></ol><div class='formula'>Simple: I = P × r × t</div><div class='formula'>Compound: A = P × (1 + r/n)<sup>n×t</sup></div>"
+    },
+    {
+        "segment": 23,
+        "title": "Lesson Review",
+        "subtitle": "What We Covered Today",
+        "content": "<ul><li>✅ <strong>Interest</strong> — cost of borrowing / reward for saving</li><li>✅ <strong>Simple Interest</strong> — linear, same amount each year, on principal only</li><li>✅ <strong>Compound Interest</strong> — exponential, interest on interest</li><li>✅ <strong>Real-world applications</strong> — savings, loans, credit cards, investments</li><li>✅ <strong>Rule of 72</strong> — quick doubling estimate</li><li>✅ <strong>Starting early</strong> — the most powerful financial decision</li></ul><div class='highlight'><h2>Time + Compound Interest = Wealth</h2><p>Start early. Let it compound. Be patient.</p></div>"
+    },
+    {
+        "segment": 24,
+        "title": "Practice Problems",
+        "subtitle": "Show Your Work!",
+        "content": "<h3>📝 Calculate BOTH simple and compound interest:</h3><div class='example'><ol><li>$5,000 at 4% for 6 years (compound monthly)</li><li>$12,000 at 3.5% for 8 years (compound annually)</li><li>$800 at 7% for 3 years (compound quarterly)</li><li>How long to double $10,000 at 6%? (Use Rule of 72)</li><li>What rate turns $4,000 into $5,200 simple interest in 5 years?</li></ol></div><p>Label variables • Show formulas • Compare results • Check your decimals</p>"
+    }
 ]
