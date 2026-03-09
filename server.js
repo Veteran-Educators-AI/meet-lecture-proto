@@ -324,6 +324,32 @@ app.post('/api/session/:code/next', (req, res) => {
   res.json({ ok: true, state: sessionPublicState(s) });
 });
 
+app.post('/api/session/:code/prev', (req, res) => {
+  const got = getSessionOr404(req, res);
+  if (!got) return;
+  const s = got.s;
+  if (!s.started) return res.status(400).json({ error: 'not_started' });
+  s.currentIndex = Math.max(s.currentIndex - 1, 0);
+  s.playing = true;
+  s.pausedReason = null;
+  broadcast(got.code, { type: 'GOTO', state: sessionPublicState(s) });
+  res.json({ ok: true, state: sessionPublicState(s) });
+});
+
+app.post('/api/session/:code/goto', (req, res) => {
+  const got = getSessionOr404(req, res);
+  if (!got) return;
+  const s = got.s;
+  if (!s.started) return res.status(400).json({ error: 'not_started' });
+  const idx = Number(req.body?.index);
+  if (!Number.isFinite(idx)) return res.status(400).json({ error: 'index_required' });
+  s.currentIndex = Math.max(0, Math.min(idx, s.playlist.length - 1));
+  s.playing = true;
+  s.pausedReason = null;
+  broadcast(got.code, { type: 'GOTO', state: sessionPublicState(s) });
+  res.json({ ok: true, state: sessionPublicState(s) });
+});
+
 app.post('/api/session/:code/mute', (req, res) => {
   const got = getSessionOr404(req, res);
   if (!got) return;

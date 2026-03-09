@@ -218,6 +218,11 @@
         <div class="slide" id="slideContent">
           <button class="fs-btn" id="fsBtn" title="Fullscreen">⛶</button>
         </div>
+        <div class="slide-nav" id="slideNav" style="margin-top:10px; gap:10px;">
+          <button id="prevSlide" type="button">◀ Prev</button>
+          <span id="slideCounter" style="flex:1; text-align:center;">Slide 1/1</span>
+          <button id="nextSlide" type="button">Next ▶</button>
+        </div>
         <div class="player-bar">
           <span class="seg-label" id="segLabel">Segment 1/1</span>
           <audio id="player" controls></audio>
@@ -303,6 +308,10 @@ function renderSlide() {
     $('fsBtn').title = 'Exit fullscreen';
   }
   $('segLabel').textContent = `Segment ${idx + 1}/${state.playlist.length}`;
+  // Update slide counter and nav button states
+  $('slideCounter').textContent = `Slide ${idx + 1}/${slides.length}`;
+  $('prevSlide').disabled = idx <= 0;
+  $('nextSlide').disabled = idx >= slides.length - 1;
 }
 
 function loadSegment() {
@@ -505,14 +514,76 @@ document.addEventListener('webkitfullscreenchange', () => {
 
 // Auto-advance to next segment when current one ends
 const getPlayer = () => slides ? $('player') : $('playerFallback');
+function canNavigateSlides() {
+  // Allow teacher/student to navigate only after lecture has started and slides exist
+  return !!(slides && slides.length && state && state.started);
+}
+
+async function gotoIndex(newIdx) {
+  if (!canNavigateSlides()) return;
+  newIdx = Math.max(0, Math.min(newIdx, slides.length - 1));
+  if (newIdx === state.currentIndex) return;
+
+  // Ask server to update canonical state so everyone stays in sync
+  try {
+    const res = await fetch(`/api/session/${sessionCode}/goto`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ index: newIdx })
+    });
+    const data = await res.json();
+    if (!data.ok && data.error) {
+      // Fallback: local update (still lets Gregory advance even if API fails)
+      state.currentIndex = newIdx;
+      setStatus();
+      syncPlayback();
+    }
+  } catch (e) {
+    state.currentIndex = newIdx;
+    setStatus();
+    syncPlayback();
+  }
+}
+
+function nextSlide() {
+  if (!canNavigateSlides()) return;
+  gotoIndex(state.currentIndex + 1);
+}
+
+function prevSlide() {
+  if (!canNavigateSlides()) return;
+  gotoIndex(state.currentIndex - 1);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Hook up nav buttons
+  $('nextSlide').onclick = nextSlide;
+  $('prevSlide').onclick = prevSlide;
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!canNavigateSlides()) return;
+    // Don't steal keys while typing
+    const t = (e.target && (e.target.tagName || '')).toLowerCase();
+    if (t === 'input' || t === 'textarea') return;
+
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault();
+      nextSlide();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      prevSlide();
+    }
+  });
+
+  // Auto-advance to next segment when current one ends
   [$('player'), $('playerFallback')].forEach(player => {
     player.addEventListener('ended', () => {
       if (!state || !state.playing) return;
       if (state.currentIndex < state.playlist.length - 1) {
-        state.currentIndex++;
-        setStatus();
-        syncPlayback();
+        // Use the same goto flow so slide updates broadcast
+        gotoIndex(state.currentIndex + 1);
       }
     });
   });
