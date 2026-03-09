@@ -113,6 +113,70 @@
     .slide-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
     .slide-nav span { color: #636e72; font-size: 0.9em; }
 
+    /* Fullscreen button */
+    .fs-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #dfe6e9;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      z-index: 10;
+      transition: background 0.2s, transform 0.15s;
+      padding: 0;
+    }
+    .fs-btn:hover { background: rgba(255,255,255,0.22); transform: scale(1.1); }
+
+    /* Fullscreen slide wrapper */
+    #slideWrapper { position: relative; }
+    #slideWrapper:fullscreen,
+    #slideWrapper:-webkit-full-screen {
+      display: flex;
+      flex-direction: column;
+      background: #0c0c1d;
+    }
+    #slideWrapper:fullscreen .slide,
+    #slideWrapper:-webkit-full-screen .slide {
+      flex: 1;
+      min-height: 100vh;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      font-size: 1.4em;
+    }
+    #slideWrapper:fullscreen .slide h1,
+    #slideWrapper:-webkit-full-screen .slide h1 {
+      font-size: 2em;
+    }
+    #slideWrapper:fullscreen .player-bar,
+    #slideWrapper:-webkit-full-screen .player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0;
+      z-index: 20;
+      border: none;
+      border-top: 1px solid #e0e0e0;
+    }
+    #slideWrapper:fullscreen .fs-btn,
+    #slideWrapper:-webkit-full-screen .fs-btn {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 30;
+    }
+
     /* Player bar */
     .player-bar {
       background: #fff;
@@ -150,10 +214,14 @@
     </div>
 
     <div id="slideContainer">
-      <div class="slide" id="slideContent"></div>
-      <div class="player-bar">
-        <span class="seg-label" id="segLabel">Segment 1/1</span>
-        <audio id="player" controls></audio>
+      <div id="slideWrapper">
+        <div class="slide" id="slideContent">
+          <button class="fs-btn" id="fsBtn" title="Fullscreen">⛶</button>
+        </div>
+        <div class="player-bar">
+          <span class="seg-label" id="segLabel">Segment 1/1</span>
+          <audio id="player" controls></audio>
+        </div>
       </div>
     </div>
 
@@ -224,11 +292,16 @@ function renderSlide() {
   const slide = slides[idx] || slides[slides.length - 1];
   if (!slide) return;
 
-  let html = '';
+  let html = '<button class="fs-btn" id="fsBtn" title="Fullscreen" onclick="toggleFullscreen()">⛶</button>';
   if (slide.title) html += `<h1>${slide.title}</h1>`;
   if (slide.subtitle) html += `<div class="slide-subtitle">${slide.subtitle}</div>`;
   if (slide.content) html += slide.content;
   $('slideContent').innerHTML = html;
+  // Update button state if already fullscreen
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    $('fsBtn').textContent = '✕';
+    $('fsBtn').title = 'Exit fullscreen';
+  }
   $('segLabel').textContent = `Segment ${idx + 1}/${state.playlist.length}`;
 }
 
@@ -402,6 +475,33 @@ if (pathMatch) {
     if (codeInput) codeInput.value = pathMatch[1].toUpperCase();
   });
 }
+
+// Fullscreen toggle
+function toggleFullscreen() {
+  const wrapper = $('slideWrapper');
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+    else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+    $('fsBtn').textContent = '✕';
+    $('fsBtn').title = 'Exit fullscreen';
+  } else {
+    if (document.exitFullscreen) document.exitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  }
+}
+$('fsBtn').onclick = toggleFullscreen;
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    $('fsBtn').textContent = '⛶';
+    $('fsBtn').title = 'Fullscreen';
+  }
+});
+document.addEventListener('webkitfullscreenchange', () => {
+  if (!document.webkitFullscreenElement) {
+    $('fsBtn').textContent = '⛶';
+    $('fsBtn').title = 'Fullscreen';
+  }
+});
 
 // Auto-advance to next segment when current one ends
 const getPlayer = () => slides ? $('player') : $('playerFallback');
