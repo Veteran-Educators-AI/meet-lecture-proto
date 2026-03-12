@@ -1,10 +1,12 @@
-node_modules/
-.env
-.env.*
-uploads/
-dist/
-build/
-.DS_Store
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Local artifacts
+__pycache__/
+*.pyc
+
+# One-off scripts / scratch
+mortgage-script.txt
+mortgage-tts.json
+generate-int2826.sh
+
+# Backups
+automation/
+public/generated/**/backup/

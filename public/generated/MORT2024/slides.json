@@ -1,0 +1,146 @@
+[
+  {
+    "segment": 1,
+    "title": "Understanding Mortgages",
+    "subtitle": "Big Picture: What You’re Really Buying",
+    "content": "<h2>Today’s Goal</h2><p>Understand how a <strong>mortgage</strong> works and what actually determines your monthly payment.</p><ul><li>What a mortgage is</li><li>Down payments</li><li>Interest rates &amp; APR</li><li>Amortization (why early payments feel unfair)</li><li>Fixed vs ARM</li><li>PMI, escrow, closing costs</li></ul><p class='note'>We’ll use simple numbers and real-life terms you’ll see on lender websites.</p>"
+  },
+  {
+    "segment": 2,
+    "title": "What Is a Mortgage?",
+    "subtitle": "Loan + House = Collateral",
+    "content": "<h2>Definition</h2><p>A <strong>mortgage</strong> is a loan used to buy a home.</p><ul><li><strong>You</strong> get the house now</li><li><strong>The bank</strong> gets paid back over time</li><li>The house is <strong>collateral</strong>: if you don’t pay, the lender can take it (foreclosure)</li></ul><div class='highlight'><strong>Key idea:</strong> You’re not just paying for a house… you’re paying for <em>time</em> (interest).</div>"
+  },
+  {
+    "segment": 3,
+    "title": "Mortgage Vocabulary",
+    "subtitle": "Principal • Interest • Term",
+    "content": "<table class='var-table'><tr><td><strong>Principal</strong></td><td>The amount you borrow</td></tr><tr><td><strong>Interest</strong></td><td>The cost of borrowing (rate %)</td></tr><tr><td><strong>Term</strong></td><td>How long you have to repay (e.g., 30 years)</td></tr><tr><td><strong>Monthly payment</strong></td><td>Usually includes principal + interest (+ taxes/insurance if escrow)</td></tr></table><p class='note'>Most people quote payment as <strong>PITI</strong>: Principal, Interest, Taxes, Insurance.</p>"
+  },
+  {
+    "segment": 4,
+    "title": "Down Payment",
+    "subtitle": "Why It Matters",
+    "content": "<h2>Down payment = money you pay upfront</h2><ul><li>Reduces how much you borrow</li><li>Often improves your interest rate</li><li>Can eliminate <strong>PMI</strong> if you put down 20%</li></ul><div class='example'><p><strong>$400,000</strong> home</p><p>10% down = $40,000 → borrow $360,000</p><p>20% down = $80,000 → borrow $320,000</p></div>"
+  },
+  {
+    "segment": 5,
+    "title": "Loan-to-Value (LTV)",
+    "subtitle": "The 20% Threshold",
+    "content": "<h2>LTV = (Loan ÷ Home Value)</h2><div class='formula'>LTV = Loan / Value</div><ul><li>If LTV is high, lender risk is higher</li><li><strong>PMI</strong> is common when LTV &gt; 80%</li></ul><div class='example'><p>$360,000 loan on a $400,000 home</p><p>LTV = 360,000 / 400,000 = <strong>90%</strong></p></div>"
+  },
+  {
+    "segment": 6,
+    "title": "Interest Rate vs APR",
+    "subtitle": "Not the Same Number",
+    "content": "<h2>Interest Rate</h2><p>The % charged on the loan balance.</p><h2>APR (Annual Percentage Rate)</h2><p>Rate <strong>plus</strong> some fees spread over time. Helps compare loans.</p><div class='highlight'><strong>Rule:</strong> APR is usually higher than the interest rate.</div><p class='note'>When comparing lenders, look at both the monthly payment and APR.</p>"
+  },
+  {
+    "segment": 7,
+    "title": "What Determines Your Payment?",
+    "subtitle": "The Big 4 Inputs",
+    "content": "<h2>Your monthly payment depends on:</h2><ol><li><strong>Loan amount</strong> (price − down payment)</li><li><strong>Interest rate</strong></li><li><strong>Term</strong> (15 vs 30 years)</li><li><strong>Taxes &amp; insurance</strong> (often escrowed)</li></ol><p class='note'>Changing the interest rate even a little can change the payment a lot.</p>"
+  },
+  {
+    "segment": 8,
+    "title": "15-Year vs 30-Year",
+    "subtitle": "Lower Total Interest vs Higher Payment",
+    "content": "<h2>Trade-off</h2><ul><li><strong>15-year</strong>: higher monthly payment, much less total interest</li><li><strong>30-year</strong>: lower monthly payment, much more total interest</li></ul><div class='highlight'>You’re paying for time. 30 years = more time = more interest.</div>"
+  },
+  {
+    "segment": 9,
+    "title": "Amortization",
+    "subtitle": "Why Early Payments Feel Like ‘All Interest’",
+    "content": "<h2>Amortization schedule</h2><p>A table showing each monthly payment and how it splits into:</p><ul><li><strong>Interest</strong> (cost of borrowing)</li><li><strong>Principal</strong> (paying down the loan)</li></ul><div class='highlight'><strong>Early on:</strong> interest is a larger part of the payment.</div>"
+  },
+  {
+    "segment": 10,
+    "title": "Amortization Example",
+    "subtitle": "One Payment Split",
+    "content": "<div class='example'><p>Suppose your monthly payment (P&amp;I) is <strong>$2,200</strong>.</p><p>Month 1 might be:</p><ul><li>Interest: $1,900</li><li>Principal: $300</li></ul><p>Later, it flips: more principal, less interest.</p></div><p class='note'>You’re not being ‘scammed’—it’s the math of how interest is calculated on the remaining balance.</p>"
+  },
+  {
+    "segment": 11,
+    "title": "Why Rates Matter So Much",
+    "subtitle": "Small % Change → Big $ Change",
+    "content": "<h2>Rates are powerful</h2><p>On a large loan, even a 1% change is huge over 30 years.</p><div class='highlight'>Higher rate = higher payment + much higher total interest.</div><p class='note'>This is why people care so much about timing the market and refinancing.</p>"
+  },
+  {
+    "segment": 12,
+    "title": "Fixed-Rate Mortgage",
+    "subtitle": "Stable Payment (for P&amp;I)",
+    "content": "<h2>Fixed-rate</h2><ul><li>Interest rate stays the same for the entire term</li><li>Principal + Interest payment stays the same</li></ul><p class='note'>Taxes/insurance can still change over time, so the total payment (PITI) can change.</p>"
+  },
+  {
+    "segment": 13,
+    "title": "Adjustable-Rate Mortgage (ARM)",
+    "subtitle": "Lower Start, More Risk",
+    "content": "<h2>ARM basics</h2><ul><li>Rate changes after an initial fixed period (e.g., 5/1 ARM)</li><li>Payment can increase if rates rise</li></ul><div class='highlight'><strong>Question to ask:</strong> Can you afford the payment if it adjusts upward?</div>"
+  },
+  {
+    "segment": 14,
+    "title": "Points &amp; Rate Buydowns",
+    "subtitle": "Pay Upfront to Lower the Rate",
+    "content": "<h2>Mortgage points</h2><ul><li>1 point = 1% of the loan amount (paid upfront)</li><li>Can reduce your interest rate</li></ul><div class='example'><p>$360,000 loan</p><p>1 point = $3,600 upfront</p></div><p class='note'>Worth it depends on how long you keep the loan (break-even).</p>"
+  },
+  {
+    "segment": 15,
+    "title": "Private Mortgage Insurance (PMI)",
+    "subtitle": "The ‘Less Than 20% Down’ Fee",
+    "content": "<h2>PMI</h2><p>An extra monthly cost that protects the lender if you default.</p><ul><li>Common when down payment &lt; 20%</li><li>Can often be removed once you reach ~80% LTV</li></ul><div class='highlight'>PMI does <strong>not</strong> protect you. It protects the lender.</div>"
+  },
+  {
+    "segment": 16,
+    "title": "Escrow",
+    "subtitle": "Taxes &amp; Insurance Collected Monthly",
+    "content": "<h2>Escrow account</h2><p>The lender collects money monthly for:</p><ul><li>Property taxes</li><li>Homeowners insurance</li></ul><p>Then pays those bills when due.</p><div class='note'>Escrow can make your payment higher than principal+interest alone.</div>"
+  },
+  {
+    "segment": 17,
+    "title": "Closing Costs",
+    "subtitle": "Fees Beyond the Down Payment",
+    "content": "<h2>Common closing costs</h2><ul><li>Loan origination fees</li><li>Appraisal</li><li>Title insurance</li><li>Attorney fees (varies by state)</li><li>Prepaid taxes/insurance</li></ul><div class='highlight'>Typical range: ~2%–5% of purchase price (varies widely).</div>"
+  },
+  {
+    "segment": 18,
+    "title": "Affordability",
+    "subtitle": "DTI and the Real Budget",
+    "content": "<h2>Debt-to-Income (DTI)</h2><p>Lenders look at your monthly debts vs income.</p><ul><li>Lower DTI = easier approval</li><li>High DTI = riskier borrower</li></ul><p class='note'>Being approved doesn’t mean it’s comfortable. Always stress-test your budget.</p>"
+  },
+  {
+    "segment": 19,
+    "title": "Credit Score &amp; Rate",
+    "subtitle": "Why Credit Impacts the Cost",
+    "content": "<h2>Credit score affects:</h2><ul><li>Whether you’re approved</li><li>Your interest rate</li><li>Sometimes PMI cost</li></ul><div class='highlight'>Better credit can save you tens of thousands over the life of a loan.</div>"
+  },
+  {
+    "segment": 20,
+    "title": "Refinancing",
+    "subtitle": "Resetting the Loan",
+    "content": "<h2>Refinance = replace your mortgage</h2><ul><li>Goal: lower rate, lower payment, or change term</li><li>But it comes with closing costs again</li></ul><div class='highlight'><strong>Key question:</strong> Will the monthly savings exceed the refi costs before you move?</div>"
+  },
+  {
+    "segment": 21,
+    "title": "Common Pitfalls",
+    "subtitle": "How People Get Burned",
+    "content": "<h2>Watch out for:</h2><ul><li>Focusing only on the monthly payment</li><li>Ignoring taxes/insurance changes</li><li>Taking an ARM without understanding adjustments</li><li>Underestimating maintenance costs</li><li>Overborrowing because you ‘got approved’</li></ul>"
+  },
+  {
+    "segment": 22,
+    "title": "Quick Case Study",
+    "subtitle": "$400k Home, 10% Down",
+    "content": "<div class='example'><p>Home price: <strong>$400,000</strong></p><p>Down payment (10%): <strong>$40,000</strong></p><p>Loan: <strong>$360,000</strong></p><p>Then add:</p><ul><li>Principal + Interest (depends on rate/term)</li><li>Taxes</li><li>Insurance</li><li>PMI (likely, because &lt;20% down)</li></ul></div><p class='note'>This is why two people with the same home price can have very different payments.</p>"
+  },
+  {
+    "segment": 23,
+    "title": "What To Ask a Lender",
+    "subtitle": "The Smart Questions",
+    "content": "<h2>Ask:</h2><ul><li>What is the interest rate and APR?</li><li>Is this fixed or ARM? What are the caps?</li><li>What are total closing costs?</li><li>Is PMI required? Cost? Removal rules?</li><li>Will taxes/insurance be escrowed?</li><li>Is there a prepayment penalty?</li></ul>"
+  },
+  {
+    "segment": 24,
+    "title": "Wrap-Up",
+    "subtitle": "Mortgages = Math + Planning",
+    "content": "<h2>Recap</h2><ul><li>Mortgage payment is more than just the loan</li><li>Down payment affects LTV, PMI, and total cost</li><li>Amortization explains the interest-heavy early years</li><li>Fixed = stable; ARM = risk/reward</li></ul><div class='highlight'>If you can understand these basics, you can avoid expensive mistakes.</div>"
+  }
+]
